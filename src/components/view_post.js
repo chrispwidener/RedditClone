@@ -6,6 +6,7 @@ class ViewPost extends React.Component {
 
     render () {
         const {post} = this.props;
+
         if (!post) {
             return (
                 <div>
@@ -16,18 +17,19 @@ class ViewPost extends React.Component {
             );
         }
 
+        const postText = post.selftext.split('\n').join('<br />');
+
         return (
             <div>
                 <div>
                     <h2>{post.title}</h2>
-                    <h3 dangerouslySetInnerHTML={{__html: post.selftext_html}}></h3>
-                </div>
-                <div>
-                    <h5>
+                     <h5>
                         Author: {post.author} <br/>
                         Upvotes: {post.score} <br/>
                         Comments: {post.num_comments}
-                    </h5>
+                    </h5>               </div>
+                <div>
+                    <h4 dangerouslySetInnerHTML={{__html: postText}}></h4>
                 </div>
             </div>
         );
