@@ -1,7 +1,6 @@
 // React or redux utils
 
 // Other utils
-import _ from 'lodash';
 
 // Local imports
 import { GET_POSTS } from '../actions';
