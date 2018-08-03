@@ -7,7 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import store from './store';
 
 import SearchBar from './components/search_bar';
-import Posts from './components/posts';
+import Subreddit from './components/subreddit';
 import ViewPost from './components/view_post';
 
 ReactDOM.render(
@@ -16,7 +16,7 @@ ReactDOM.render(
             <div>
                 <Switch>
                     <Route path="/:subreddit/:id" component={ViewPost} />
-                    <Route path="/:subreddit" component={Posts} />
+                    <Route path="/:subreddit" component={Subreddit} />
                     <Route path="/" component={SearchBar} />
                 </Switch>
             </div>
