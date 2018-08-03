@@ -12,6 +12,39 @@ class ViewPost extends React.Component {
         this.props.getPost(subreddit, id);
     }
 
+    getReplies(replies) {
+        console.log(replies);
+        if (!replies || replies === "") {
+            return {};
+        } else {
+            return replies.data.children;
+        }
+    }
+
+    renderComments(comments) {
+        if (_.isEmpty(comments)) {
+            return;
+        }
+
+        return _.map(comments, comment => {
+            const author = comment.data.author;
+            const upvotes = comment.data.score;
+            const body = comment.data.body;
+            const id = comment.data.id;
+            const replies = this.getReplies(comment.data.replies);
+
+            return (
+                <div className="comment" key={id}>
+                    <span>
+                        <h5>{upvotes}<br/>{author}</h5>
+                    </span>
+                    {body}
+                    {this.renderComments(replies)}
+                </div>
+            );
+        })
+    }
+
     render () {
         const { post } = this.props;
 
@@ -19,7 +52,7 @@ class ViewPost extends React.Component {
             return (
                 <div>
                     <Link to="/">
-                        Post not found, return home
+                        Loading, click to go back
                     </Link>
                 </div>
             );
@@ -36,9 +69,14 @@ class ViewPost extends React.Component {
                         Author: {post.author} <br/>
                         Upvotes: {post.score} <br/>
                         Comments: {post.num_comments}
-                    </h5>               </div>
+                    </h5>
+                </div>
                 <div>
                     <h4 dangerouslySetInnerHTML={{__html: postText}}></h4>
+                </div>
+                <div>
+                    <h2>Comments:</h2>
+                    {this.renderComments(this.props.comments)}
                 </div>
             </div>
         );
