@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import _ from 'lodash';
 
 import {getPosts} from '../actions';
+
+import '../static/style.css';
+
 
 class PostsList extends React.Component {
     componentDidMount() {

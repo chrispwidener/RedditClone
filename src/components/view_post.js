@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import _ from 'lodash';
-
 import { getPost } from '../actions';
+import Comment from './comment';
+import '../static/style.css';
 
 class ViewPost extends React.Component {
     componentDidMount() {
@@ -12,37 +12,10 @@ class ViewPost extends React.Component {
         this.props.getPost(subreddit, id);
     }
 
-    getReplies(replies) {
-        console.log(replies);
-        if (!replies || replies === "") {
-            return {};
-        } else {
-            return replies.data.children;
-        }
-    }
-
     renderComments(comments) {
-        if (_.isEmpty(comments)) {
-            return;
-        }
-
         return _.map(comments, comment => {
-            const author = comment.data.author;
-            const upvotes = comment.data.score;
-            const body = comment.data.body;
-            const id = comment.data.id;
-            const replies = this.getReplies(comment.data.replies);
-
-            return (
-                <div className="comment" key={id}>
-                    <span>
-                        <h5>{upvotes}<br/>{author}</h5>
-                    </span>
-                    {body}
-                    {this.renderComments(replies)}
-                </div>
-            );
-        })
+            return <Comment comment={comment} key={comment.data.id}/>;
+        });
     }
 
     render () {
@@ -62,7 +35,7 @@ class ViewPost extends React.Component {
 
         return (
             <div>
-                <Link to="/">Back</Link>
+                <Link to={`/${post["subreddit"]}`}>Back</Link>
                 <div>
                     <h2>{post.title}</h2>
                      <h5>
