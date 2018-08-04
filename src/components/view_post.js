@@ -22,13 +22,20 @@ class ViewPost extends React.Component {
         });
     }
 
-    renderMedia(media_embed) {
+    renderMedia(post) {
+        const media_embed = post.media_embed;
+        const post_hint = post.post_hint;
+
         if (_.isEmpty(media_embed)) {
+            if (post_hint === "image") {
+                return (
+                    <img src={post.url} alt="post image"></img>
+                );
+            }
             return;
         }
 
         const text = entities.decode(media_embed.content);
-        console.log(text);
         return (
             <div dangerouslySetInnerHTML={{__html: text}}>
             </div>
@@ -62,7 +69,7 @@ class ViewPost extends React.Component {
                     </h5>
                 </div>
                 <div>
-                    {this.renderMedia(post.media_embed)}
+                    {this.renderMedia(post)}
                     <h4 dangerouslySetInnerHTML={{__html: postText}}></h4>
                 </div>
                 <div>

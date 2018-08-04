@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import store from './store';
 
-import SearchBar from './components/search_bar';
 import Subreddit from './components/subreddit';
 import ViewPost from './components/view_post';
 
