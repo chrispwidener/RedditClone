@@ -35,7 +35,7 @@ class ViewPost extends React.Component {
 
         return (
             <div>
-                <Link to={`/${post["subreddit"]}`}>Back</Link>
+                <Link to={`/${post["subreddit"]}`}>Back to r/{post["subreddit"]}</Link>
                 <div>
                     <h2>{post.title}</h2>
                      <h5>
@@ -49,6 +49,7 @@ class ViewPost extends React.Component {
                 </div>
                 <div>
                     <h2>Comments:</h2>
+                    <h6>Click comment to collapse</h6>
                     {this.renderComments(this.props.comments)}
                 </div>
             </div>

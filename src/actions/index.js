@@ -11,9 +11,6 @@ export const GET_POST = "get_post";
 // ACTION FUNCTIONS
 export function getPosts(subreddit) {
     const request = axios.get(`${rootUrl}${subreddit}/top.json?t=day`);
-
-    console.log(subreddit);
-
     return {
         type: GET_POSTS,
         payload: request

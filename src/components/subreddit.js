@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 import {getPosts} from '../actions';
+import SearchBar from './search_bar';
 
 import '../static/style.css';
 
@@ -12,6 +13,11 @@ class PostsList extends React.Component {
     componentDidMount() {
         const {subreddit} = this.props.match.params;
         this.props.getPosts(subreddit);
+    }
+
+    changeSubreddit(subreddit) {
+        this.props.getPosts(subreddit);
+        this.props.history.push(`/${subreddit}`);
     }
 
     renderPosts() {
@@ -36,14 +42,18 @@ class PostsList extends React.Component {
         if (_.isEmpty(this.props.posts)) {
             return ( 
                 <div>
-                    <Link to="/">Home</Link>
-                    <p>Loading...</p>
+                    <SearchBar changeRoute={(subreddit) => {
+                        this.changeSubreddit(subreddit);
+                    }} />
+                    <p>Enter Subreddit Above</p>
                 </div>
             );
         }
         return (
             <div>
-                <Link to="/">Home</Link>
+                <SearchBar changeRoute={(subreddit) => {
+                    this.changeSubreddit(subreddit);
+                }}/>
                 <h1>r/{this.props.match.params.subreddit}</h1>
                 <table>
                     <thead>

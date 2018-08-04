@@ -5,7 +5,7 @@ import { getPosts } from '../actions';
 
 class SearchBar extends React.Component {
     onSubmit({subreddit}) {
-        this.props.history.push(`/${subreddit}`)    
+        this.props.changeRoute(subreddit);
     }
 
     render() {
@@ -24,4 +24,5 @@ class SearchBar extends React.Component {
 
 export default reduxForm ({
     form: 'SearchBarForm',
-})(connect(null, { getPosts })(SearchBar));
+})(connect(null, { getPosts })(SearchBar)
+);

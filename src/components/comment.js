@@ -63,7 +63,7 @@ class Comment extends React.Component {
             <div className="comment">
                 <div onClick={this.toggleVisibility.bind(this)}>
                     <span>
-                        <h5>{upvotes}<br/>{author}</h5>
+                        <h5>{upvotes} -- {author}</h5>
                     </span>
                     {body}
                 </div>
