@@ -1,12 +1,12 @@
 import React from 'react';
 import _ from 'lodash';
-import '../static/style.css';
 
 class Comment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visibile: true
+            visibile: true,
+            op: this.props.op
         };
     }
 
@@ -31,7 +31,7 @@ class Comment extends React.Component {
             return;
         }
         return _.map(replies, reply => {
-            return <Comment comment={reply} key={reply.data.id} />
+            return <Comment comment={reply} op={this.state.op} key={reply.data.id} />
         });
     }
 
@@ -40,6 +40,13 @@ class Comment extends React.Component {
             return 'comment';
         }
         return 'comment collapsed';
+    }
+
+    isOp(author) {
+        if (this.state.op === author) {
+            return "author";
+        }
+        return "";
     }
 
     render() {
@@ -52,8 +59,8 @@ class Comment extends React.Component {
         if (this.state.visibile === false) {
             return (
                 <div className="comment collapsed" onClick={this.toggleVisibility.bind(this)}>
-                    <span>
-                        <h5>{upvotes} -- {author}</h5>
+                    <span className={this.isOp(author)}>
+                        <h4>{upvotes} -- {author}</h4>
                     </span>
                 </div>
             );
@@ -62,8 +69,8 @@ class Comment extends React.Component {
         return (
             <div className="comment">
                 <div onClick={this.toggleVisibility.bind(this)}>
-                    <span>
-                        <h5>{upvotes} -- {author}</h5>
+                    <span className={this.isOp(author)}>
+                        <h4>{upvotes} -- {author}</h4>
                     </span>
                     {body}
                 </div>

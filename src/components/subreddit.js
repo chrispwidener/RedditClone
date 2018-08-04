@@ -6,13 +6,13 @@ import _ from 'lodash';
 import {getPosts} from '../actions';
 import SearchBar from './search_bar';
 
-import '../static/style.css';
-
 
 class PostsList extends React.Component {
     componentDidMount() {
         const {subreddit} = this.props.match.params;
-        this.props.getPosts(subreddit);
+        if (typeof subreddit !== 'undefined') {
+            this.props.getPosts(subreddit);
+        }
     }
 
     changeSubreddit(subreddit) {

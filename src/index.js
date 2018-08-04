@@ -10,6 +10,8 @@ import SearchBar from './components/search_bar';
 import Subreddit from './components/subreddit';
 import ViewPost from './components/view_post';
 
+import './static/style.css';
+
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
@@ -17,7 +19,7 @@ ReactDOM.render(
                 <Switch>
                     <Route path="/:subreddit/:id" component={ViewPost} />
                     <Route path="/:subreddit" component={Subreddit} />
-                    <Route path="/" component={SearchBar} />
+                    <Route path="/" component={Subreddit} />
                 </Switch>
             </div>
         </BrowserRouter>

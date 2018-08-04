@@ -4,6 +4,10 @@
     padding-left: 10px;
 }
 
+.author {
+    color: goldenrod;
+}
+
 .comment {
     border-left: 5px solid blue;
     margin-left: 5px;
@@ -14,3 +18,4 @@
 .collapsed {
     background-color: lightgray;
 }
+

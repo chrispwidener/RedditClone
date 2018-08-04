@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { getPost } from '../actions';
 import Comment from './comment';
-import '../static/style.css';
 
 class ViewPost extends React.Component {
+
     componentDidMount() {
         const {subreddit, id} = this.props.match.params;
         this.props.getPost(subreddit, id);
     }
 
     renderComments(comments) {
+        const author = this.props.post.author;
         return _.map(comments, comment => {
-            return <Comment comment={comment} key={comment.data.id}/>;
+            return <Comment comment={comment} op={author} key={comment.data.id}/>;
         });
     }
 
