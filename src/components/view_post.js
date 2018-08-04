@@ -5,6 +5,9 @@ import _ from 'lodash';
 import { getPost } from '../actions';
 import Comment from './comment';
 
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
+
 class ViewPost extends React.Component {
 
     componentDidMount() {
@@ -17,6 +20,19 @@ class ViewPost extends React.Component {
         return _.map(comments, comment => {
             return <Comment comment={comment} op={author} key={comment.data.id}/>;
         });
+    }
+
+    renderMedia(media_embed) {
+        if (_.isEmpty(media_embed)) {
+            return;
+        }
+
+        const text = entities.decode(media_embed.content);
+        console.log(text);
+        return (
+            <div dangerouslySetInnerHTML={{__html: text}}>
+            </div>
+        );
     }
 
     render () {
@@ -46,6 +62,7 @@ class ViewPost extends React.Component {
                     </h5>
                 </div>
                 <div>
+                    {this.renderMedia(post.media_embed)}
                     <h4 dangerouslySetInnerHTML={{__html: postText}}></h4>
                 </div>
                 <div>
