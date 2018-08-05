@@ -3,7 +3,7 @@
 // Other utils
 
 // Local imports
-import { GET_POSTS } from '../actions';
+import { GET_POSTS, CLEAR_POSTS } from '../actions';
 
 export default function(state={}, action) {
     switch (action.type) {
@@ -16,6 +16,8 @@ export default function(state={}, action) {
                 map[obj.data.id] = obj.data;
                 return map;
             }, {});
+        case CLEAR_POSTS:
+            return action.payload;
         default:
             return state;
     }

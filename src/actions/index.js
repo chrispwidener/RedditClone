@@ -6,6 +6,8 @@ const rootUrl = "http://www.reddit.com/r/";
 // ACTION STRINGS
 export const GET_POSTS = "get_posts";
 export const GET_POST = "get_post";
+export const CLEAR_POST = "clear_post";
+export const CLEAR_POSTS = "clear_posts";
 
 
 // ACTION FUNCTIONS
@@ -23,5 +25,19 @@ export function getPost(subreddit, id) {
     return {
         type: GET_POST,
         payload: request
+    }
+}
+
+export function clearPost() {
+    return {
+        type: CLEAR_POST,
+        payload: {}
+    }
+}
+
+export function clearPosts() {
+    return {
+        type: CLEAR_POSTS,
+        payload: {}
     }
 }

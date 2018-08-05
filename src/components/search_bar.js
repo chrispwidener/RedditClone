@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { getPosts } from '../actions';
 
 class SearchBar extends React.Component {
     onSubmit({subreddit}) {
@@ -24,5 +22,4 @@ class SearchBar extends React.Component {
 
 export default reduxForm ({
     form: 'SearchBarForm',
-})(connect(null, { getPosts })(SearchBar)
-);
+})(SearchBar);

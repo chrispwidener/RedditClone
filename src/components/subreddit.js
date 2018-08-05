@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
-import {getPosts} from '../actions';
+import {getPosts, clearPosts } from '../actions';
 import SearchBar from './search_bar';
 
 
@@ -11,11 +11,13 @@ class PostsList extends React.Component {
     componentDidMount() {
         const {subreddit} = this.props.match.params;
         if (typeof subreddit !== 'undefined') {
+            this.props.clearPosts();
             this.props.getPosts(subreddit);
         }
     }
 
     changeSubreddit(subreddit) {
+        this.props.clearPosts();
         this.props.getPosts(subreddit);
         this.props.history.push(`/${subreddit}`);
     }
@@ -77,4 +79,4 @@ function mapStateToProps(state) {
     return { posts: state.posts }
 }
 
-export default connect(mapStateToProps, {getPosts})(PostsList);
+export default connect(mapStateToProps, { getPosts, clearPosts })(PostsList);

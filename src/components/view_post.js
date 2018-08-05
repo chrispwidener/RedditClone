@@ -29,7 +29,7 @@ class ViewPost extends React.Component {
         if (_.isEmpty(media_embed)) {
             if (post_hint === "image") {
                 return (
-                    <img src={post.url} alt="post image"></img>
+                    <img src={post.url} alt="post"></img>
                 );
             }
             return;
