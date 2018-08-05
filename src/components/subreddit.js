@@ -11,7 +11,6 @@ class PostsList extends React.Component {
     componentDidMount() {
         const {subreddit} = this.props.match.params;
         if (typeof subreddit !== 'undefined') {
-            this.props.clearPosts();
             this.props.getPosts(subreddit);
         }
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { getPost } from '../actions';
+import { getPost, clearPost } from '../actions';
 import Comment from './comment';
 
 const Entities = require('html-entities').AllHtmlEntities;
@@ -12,6 +12,7 @@ class ViewPost extends React.Component {
 
     componentDidMount() {
         const {subreddit, id} = this.props.match.params;
+        this.props.clearPost();
         this.props.getPost(subreddit, id);
     }
 
@@ -93,4 +94,4 @@ function mapStateToProps({ current_post }) {
     }
 }
 
-export default connect(mapStateToProps, { getPost })(ViewPost);
+export default connect(mapStateToProps, { getPost, clearPost })(ViewPost);
