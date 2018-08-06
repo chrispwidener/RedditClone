@@ -11,8 +11,8 @@ export const CLEAR_POSTS = "clear_posts";
 
 
 // ACTION FUNCTIONS
-export function getPosts(subreddit) {
-    const request = axios.get(`${rootUrl}${subreddit}/top.json?t=day`);
+export function getPosts(subreddit, context="top", timeframe="day") {
+    const request = axios.get(`${rootUrl}${subreddit}/${context}.json?t=${timeframe}`);
     return {
         type: GET_POSTS,
         payload: request

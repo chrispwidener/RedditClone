@@ -27,20 +27,22 @@ class ViewPost extends React.Component {
         const media_embed = post.media_embed;
         const post_hint = post.post_hint;
 
-        if (_.isEmpty(media_embed)) {
-            if (post_hint === "image") {
+
+        // post_hint types: "image", "link", "rich:video"
+        switch (post_hint) {
+            case "image":
+                return <img src={post.url} alt="post"></img>;
+            case "link":
+                return <a href={post.url} target="_blank">Article Link</a>;
+            case "rich:video":
+                const text = entities.decode(media_embed.content);
                 return (
-                    <img src={post.url} alt="post"></img>
+                    <div dangerouslySetInnerHTML={{__html: text}}></div>
                 );
-            }
-            return;
+            default:
         }
 
-        const text = entities.decode(media_embed.content);
-        return (
-            <div dangerouslySetInnerHTML={{__html: text}}>
-            </div>
-        );
+
     }
 
     render () {

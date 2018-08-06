@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import {getPosts, clearPosts } from '../actions';
 import SearchBar from './search_bar';
-
+const Spinner = require('react-spinkit');
 
 class PostsList extends React.Component {
     componentDidMount() {
@@ -16,8 +16,6 @@ class PostsList extends React.Component {
     }
 
     changeSubreddit(subreddit) {
-        this.props.clearPosts();
-        this.props.getPosts(subreddit);
         this.props.history.push(`/${subreddit}`);
     }
 
@@ -43,10 +41,14 @@ class PostsList extends React.Component {
         if (_.isEmpty(this.props.posts)) {
             return ( 
                 <div>
-                    <SearchBar changeRoute={(subreddit) => {
+                    <div>
+                        <SearchBar changeRoute={(subreddit) => {
                         this.changeSubreddit(subreddit);
-                    }} />
-                    <p>Enter Subreddit Above</p>
+                        }} />
+                    </div>
+                    <div>
+                        <Spinner className="spinner" name="ball-spin-fade-loader" />
+                    </div>
                 </div>
             );
         }

@@ -1,6 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
 
+const Entities = require('html-entities').AllHtmlEntities;
+const entities = new Entities();
+
 class Comment extends React.Component {
     constructor(props) {
         super(props);
@@ -53,7 +56,7 @@ class Comment extends React.Component {
         const comment = this.props.comment;
         const author = comment.data.author;
         const upvotes = comment.data.score;
-        const body = comment.data.body;
+        const body = entities.decode(comment.data.body);
         const replies = this.getReplies(comment.data.replies);
 
         if (this.state.visibile === false) {
