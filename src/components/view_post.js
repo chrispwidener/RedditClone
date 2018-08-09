@@ -39,6 +39,12 @@ class ViewPost extends React.Component {
                 return (
                     <div dangerouslySetInnerHTML={{__html: text}}></div>
                 );
+            case "hosted:video":
+                const secure_media = post.secure_media;
+                const height = secure_media.height;
+                const width = secure_media.width;
+                const media = secure_media.hls_url;
+                return <video src={media} height={height} width={width}><source src={media}></source></video>
             default:
         }
 

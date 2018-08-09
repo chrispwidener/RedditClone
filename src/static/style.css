@@ -1,7 +1,40 @@
-.post-in-list {
-    height: 40px;
+table {
+    border-collapse: collapse;   
+}
+
+tr {
+    margin: 5px 0px;
+    border: solid thin;
     border-left: 5px solid blue;
-    padding-left: 10px;
+    height: 10em;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+td {
+    padding: 10px;
+}
+
+td:first-child {
+    white-space: nowrap;
+    text-align: right;
+}
+
+td:nth-child(2) {
+    text-align: center;
+}
+
+
+tr:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none !important;
+    color: black;
 }
 
 .author {
@@ -28,4 +61,24 @@
 
 .field {
     margin: 10px;
+}
+
+/* FORM STUFF */
+
+form {
+    margin: 20px;
+}
+
+input, select {
+    width: 13em;
+    height: 30px;
+}
+
+input {
+    height: 1.6em;
+}
+
+button {
+    width: 13em;
+    height: 2.2em;
 }

@@ -20,14 +20,15 @@ class SearchBar extends React.Component {
                     name="subreddit"
                     component="input"
                     className="field"
+                    placeholder="Enter Subreddit"
                 />
                 <Field 
                     name="context" 
                     component="select"
                     className="field"
                     value="top"
+                    placebolder=""
                 >
-                    <option />
                     <option value="top">Top</option>
                     <option value="hot">Hot</option>
                     <option value="new">New</option>
@@ -39,7 +40,6 @@ class SearchBar extends React.Component {
                     className="field"
                     value="day"
                 >
-                    <option />
                     <option value="day">Day</option>
                     <option value="week">Week</option>
                     <option value="month">Month</option>

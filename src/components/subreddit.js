@@ -19,19 +19,41 @@ class PostsList extends React.Component {
         this.props.history.push(`/${subreddit}`);
     }
 
+    viewPost(subreddit, postId) {
+        this.props.history.push(`/${subreddit}/${postId}`);
+    }
+
+    renderThumbnail (post) {
+        const thumbnail = post.thumbnail;
+
+        if (thumbnail === "self") {
+            return;
+        }
+
+        return (
+            <img src={thumbnail} alt="post thumbnail"></img>
+        );
+    }
+
     renderPosts() {
+        const subreddit = this.props.match.params.subreddit;
         return _.map(this.props.posts, post => {
             const key = post.id;
             return (
-                <tr key={key}>
-                    <td className="post-in-list">{post.score}</td>
-                    <td>{post.author}</td>
+                <tr key={key} className={"post-in-list"} onClick={ () => this.viewPost(subreddit, post.id)} >
+                    <td>
+                        <b>{post.author}</b><br/>
+                        Upvotes: {post.score}<br/>
+                        Comments: {post.num_comments}    
+                    </td>
                     <td>
                         <Link to={`/${this.props.match.params.subreddit}/${post.id}`}>
                             {post.title}
                         </Link>
                     </td>
-                    <td>{post.num_comments}</td>
+                    <td>
+                        {this.renderThumbnail(post)}
+                    </td>
                 </tr>
             );
         });
@@ -59,14 +81,6 @@ class PostsList extends React.Component {
                 }}/>
                 <h1>r/{this.props.match.params.subreddit}</h1>
                 <table>
-                    <thead>
-                        <tr>
-                            <th>Upvotes:</th>
-                            <th>Poster:</th>
-                            <th>Title:</th>
-                            <th>Num Comments:</th>
-                        </tr>
-                    </thead>
                     <tbody>
                         {this.renderPosts() }
                     </tbody>
