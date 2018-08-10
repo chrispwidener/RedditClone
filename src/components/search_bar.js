@@ -2,13 +2,15 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { getPosts } from '../actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class SearchBar extends React.Component {
     onSubmit(fields) {
         const sr = fields.subreddit;
         const ctx = fields.context;
         const tfrm = fields.timeframe;
-        this.props.changeRoute(sr);
+        //this.props.changeRoute(sr);
+        this.props.history.push(`/${sr}`);
         this.props.getPosts(sr, ctx, tfrm);
     }
 
@@ -53,4 +55,4 @@ class SearchBar extends React.Component {
 
 export default reduxForm ({
     form: 'SearchBarForm',
-})( connect(null, {getPosts})(SearchBar));
+})( withRouter( connect(null, {getPosts})(SearchBar)));

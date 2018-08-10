@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { getPost, clearPost } from '../actions';
 import Comment from './comment';
+import SearchBar from './search_bar';
 
 const Entities = require('html-entities').AllHtmlEntities;
 const entities = new Entities();
@@ -68,6 +69,7 @@ class ViewPost extends React.Component {
 
         return (
             <div>
+                <SearchBar />
                 <Link to={`/${post["subreddit"]}`}>Back to r/{post["subreddit"]}</Link>
                 <div>
                     <h2>{post.title}</h2>

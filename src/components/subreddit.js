@@ -15,10 +15,6 @@ class PostsList extends React.Component {
         }
     }
 
-    changeSubreddit(subreddit) {
-        this.props.history.push(`/${subreddit}`);
-    }
-
     viewPost(subreddit, postId) {
         this.props.history.push(`/${subreddit}/${postId}`);
     }
@@ -26,7 +22,7 @@ class PostsList extends React.Component {
     renderThumbnail (post) {
         const thumbnail = post.thumbnail;
 
-        if (thumbnail === "self") {
+        if (thumbnail === "self" || !thumbnail) {
             return;
         }
 
@@ -64,9 +60,7 @@ class PostsList extends React.Component {
             return ( 
                 <div>
                     <div>
-                        <SearchBar changeRoute={(subreddit) => {
-                        this.changeSubreddit(subreddit);
-                        }} />
+                        <SearchBar />
                     </div>
                     <div>
                         <Spinner className="spinner" name="ball-spin-fade-loader" />
