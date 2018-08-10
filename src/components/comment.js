@@ -71,8 +71,8 @@ class Comment extends React.Component {
 
         return (
             <div className="comment">
-                <div onClick={this.toggleVisibility.bind(this)}>
-                    <span className={this.isOp(author)}>
+                <div>
+                    <span className={this.isOp(author)} onClick={this.toggleVisibility.bind(this)}>
                         <h4>{upvotes} -- {author}</h4>
                     </span>
                     {body}

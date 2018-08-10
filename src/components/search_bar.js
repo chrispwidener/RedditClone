@@ -9,7 +9,6 @@ class SearchBar extends React.Component {
         const sr = fields.subreddit;
         const ctx = fields.context;
         const tfrm = fields.timeframe;
-        //this.props.changeRoute(sr);
         this.props.history.push(`/${sr}`);
         this.props.getPosts(sr, ctx, tfrm);
     }
